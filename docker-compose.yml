@@ -68,6 +68,7 @@ services:
       - "traefik.http.routers.supabase-studio.rule=Host(`studio.supabaseasset.garisaksara.com.my`)"
       - "traefik.http.routers.supabase-studio.entrypoints=websecure"
       - "traefik.http.routers.supabase-studio.tls.certResolver=letsencrypt"
+      - "traefik.http.services.supabase-studio.loadbalancer.server.port=3000"
     volumes:
       - ./volumes/snippets:/app/snippets:z
       - ./volumes/functions:/app/edge-functions:ro,z
