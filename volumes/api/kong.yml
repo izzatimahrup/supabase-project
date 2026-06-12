@@ -294,6 +294,20 @@ services:
     plugins:
       - name: cors
 
+  ## Health check endpoint (no authentication)
+  - name: health
+    url: http://localhost:8000/healthz
+    routes:
+      - name: health
+        paths:
+          - /health
+    plugins:
+      - name: request-termination
+        config:
+          status_code: 200
+          content_type: application/json
+          body: '{"message":"OK"}'
+
   ## OAuth 2.0 Authorization Server Metadata (RFC 8414)
   - name: well-known-oauth
     _comment: 'Auth: /.well-known/oauth-authorization-server -> http://auth:9999/.well-known/oauth-authorization-server'
